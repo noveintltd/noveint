@@ -1,0 +1,8 @@
+.char {
+  will-change: transform;
+  display: inline-block;
+}
+
+.scrambled-text-container p {
+  display: inline;
+}

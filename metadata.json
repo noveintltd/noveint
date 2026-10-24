@@ -1,0 +1,10 @@
+{
+  "name": "NOVE INT v6",
+  "description": "A high-end digital design studio bridging UK creative flair with Taiwanese soul through bilingual design and localization.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
