@@ -14,6 +14,7 @@ import AppDevelopment from './pages/services/AppDevelopment';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsConditions from './pages/TermsConditions';
 import ChatBot from './components/ChatBot';
+import SEOHead from './components/SEOHead';
 
 export type Language = 'EN' | 'ZH';
 
@@ -79,6 +80,7 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-black text-white selection:bg-[#39FF14] selection:text-black">
+      <SEOHead lang={lang} />
       <ScrollToTop />
       
       {/* Vertical Progress Bar */}

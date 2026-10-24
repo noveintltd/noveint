@@ -17,10 +17,9 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
                 <span className="text-[#39FF14]">NOVE</span>INT
               </span>
               <img 
-                src="https://noveint.com/nove_trans_300.png" 
-                alt="NOVE Logo" 
+                src="/nove_trans_300.webp" 
+                alt={lang === 'EN' ? 'Nove International Limited Logo' : '英商了解文化股份有限公司標誌'} 
                 className="h-[1.25em] w-auto inline-block object-contain opacity-90"
-                referrerPolicy="no-referrer"
               />
             </div>
             <p className="text-[10px] text-gray-500 uppercase tracking-[0.2em]">

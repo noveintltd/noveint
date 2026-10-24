@@ -50,25 +50,27 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
           style={{ y: titleY, opacity: titleOpacity }}
           className="relative mb-10 px-4 flex flex-col items-center will-change-transform"
         >
-          {lang === 'EN' ? (
-            <>
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[9.5rem] font-black tracking-tighter leading-[0.85] uppercase select-none text-white block">
-                UK CREATIVE
-              </h1>
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[9.5rem] font-black tracking-tighter leading-[0.85] uppercase select-none text-[#39FF14] block mt-1">
-                TAIWAN SOUL
-              </h1>
-            </>
-          ) : (
-            <>
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[9.5rem] font-black tracking-tighter leading-[0.85] uppercase select-none text-white block">
-                英倫創意
-              </h1>
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[9.5rem] font-black tracking-tighter leading-[0.85] uppercase select-none text-[#39FF14] block mt-1">
-                台灣靈魂
-              </h1>
-            </>
-          )}
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[9.5rem] font-black tracking-tighter leading-[0.85] uppercase select-none flex flex-col items-center">
+            {lang === 'EN' ? (
+              <>
+                <span className="text-white block">
+                  UK CREATIVE
+                </span>
+                <span className="text-[#39FF14] block mt-1">
+                  TAIWAN SOUL
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="text-white block">
+                  英倫創意
+                </span>
+                <span className="text-[#39FF14] block mt-1">
+                  台灣靈魂
+                </span>
+              </>
+            )}
+          </h1>
         </motion.div>
 
         {/* Subtitle with distinct parallax */}

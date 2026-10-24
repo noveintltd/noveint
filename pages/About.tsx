@@ -114,7 +114,7 @@ const About: React.FC<AboutProps> = ({ lang }) => {
                   whileHover={{ x: 2, y: 2 }}
                   className="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-[#39FF14]" 
                 />
-                <h3 ref={missionTitleRef} className="text-[#39FF14] text-sm font-black tracking-[0.3em] uppercase mb-4">
+                <h2 ref={missionTitleRef} className="text-[#39FF14] text-sm font-black tracking-[0.3em] uppercase mb-4">
                   <VariableProximity
                     label={lang === 'EN' ? 'Our Mission' : '我們的使命'}
                     fromFontVariationSettings="'wght' 400, 'opsz' 9"
@@ -123,7 +123,7 @@ const About: React.FC<AboutProps> = ({ lang }) => {
                     radius={60}
                     falloff="linear"
                   />
-                </h3>
+                </h2>
                 <p className="text-white text-lg font-bold italic">
                   {lang === 'EN' ? '"Bridges of tomorrow, built today."' : '「今日打造，明日之橋。」'}
                 </p>

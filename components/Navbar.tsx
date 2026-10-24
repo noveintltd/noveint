@@ -76,7 +76,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, lang, toggleLang }) => {
             </span>
             <img 
               src="https://noveint.com/nove_trans_300.png" 
-              alt="NOVE Logo" 
+              alt={lang === 'EN' ? 'Nove International Limited Logo' : '英商了解文化股份有限公司標誌'} 
               className="h-[1.25em] w-auto inline-block object-contain transition-transform duration-300 group-hover:scale-105"
               referrerPolicy="no-referrer"
             />
@@ -108,6 +108,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, lang, toggleLang }) => {
             
             <button 
               onClick={toggleLang}
+              aria-label={lang === 'EN' ? 'Switch language to Traditional Chinese' : 'Switch language to English'}
               className="ml-4 relative py-1.5 px-4 border border-[#39FF14] text-xs text-[#39FF14] hover:bg-[#39FF14] hover:text-black transition-all duration-200 font-black tracking-[0.1em] whitespace-nowrap"
             >
               <motion.span whileHover="hover" initial="initial" className="relative">
@@ -129,6 +130,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, lang, toggleLang }) => {
           <div className="md:hidden flex items-center gap-4 relative z-[150]">
             <button 
               onClick={handleToggleLang}
+              aria-label={lang === 'EN' ? 'Switch language to Traditional Chinese' : 'Switch language to English'}
               className={`border border-[#39FF14] px-3 py-1 text-[10px] text-[#39FF14] font-bold transition-all duration-300 ${
                 isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
               }`}
@@ -139,7 +141,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, lang, toggleLang }) => {
             <button 
               className="w-10 h-10 flex flex-col justify-center items-center focus:outline-none"
               onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle Menu"
+              aria-label={lang === 'EN' ? (isOpen ? 'Close navigation menu' : 'Open navigation menu') : (isOpen ? '關閉導航選單' : '開啟導航選單')}
             >
               <div className={`w-7 h-0.5 bg-[#39FF14] transition-transform duration-300 ${isOpen ? 'rotate-45 translate-y-0.5' : 'mb-1.5'}`} />
               <div className={`w-7 h-0.5 bg-[#39FF14] transition-opacity duration-200 ${isOpen ? 'opacity-0' : 'mb-1.5'}`} />
