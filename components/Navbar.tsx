@@ -75,10 +75,9 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, lang, toggleLang }) => {
               <span className="text-[#39FF14]">NOVE</span>INT
             </span>
             <img 
-              src="https://noveint.com/nove_trans_300.png" 
+              src="/nove_trans_300.webp" 
               alt={lang === 'EN' ? 'Nove International Limited Logo' : '英商了解文化股份有限公司標誌'} 
               className="h-[1.25em] w-auto inline-block object-contain transition-transform duration-300 group-hover:scale-105"
-              referrerPolicy="no-referrer"
             />
           </Link>
           
