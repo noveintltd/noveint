@@ -89,7 +89,7 @@ const NoveToolsSection: React.FC<NoveToolsSectionProps> = ({ lang }) => {
           </p>
         </div>
         <a 
-          href="https://novetools.com/" 
+          href="https://www.novetools.com/" 
           target="_blank" 
           rel="noopener noreferrer"
           className="neon-button inline-block px-12 py-5 text-sm font-black tracking-[0.3em] uppercase rounded-none"
