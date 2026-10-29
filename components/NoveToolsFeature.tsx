@@ -348,10 +348,6 @@ const NoveToolsFeature: React.FC<NoveToolsFeatureProps> = ({ lang }) => {
         className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 mb-16 will-change-transform"
       >
         <div ref={sectionHeaderRef} className="flex flex-col items-center text-center">
-          <div className="inline-block border border-[#39FF14] px-4 py-1 mb-6 text-[#39FF14] text-xs font-mono font-bold tracking-[0.3em] uppercase">
-            {lang === 'EN' ? 'Proprietary Utilities Suite' : '自主研發數位工具套裝'}
-          </div>
-
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -359,10 +355,9 @@ const NoveToolsFeature: React.FC<NoveToolsFeatureProps> = ({ lang }) => {
             className="flex items-center justify-center gap-4 md:gap-6 w-full"
           >
             <img 
-              src="https://novetools.com/wp-content/uploads/2026/03/NOVE_LOGO_TRANSPARENT_1024.png" 
+              src="/nove_trans_300.webp" 
               alt="Nove Logo" 
               className="h-10 md:h-16 w-auto object-contain drop-shadow-[0_0_15px_rgba(57,255,20,0.2)]"
-              referrerPolicy="no-referrer"
             />
             <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-white drop-shadow-[0_0_20px_rgba(57,255,20,0.2)]">
               <VariableProximity
