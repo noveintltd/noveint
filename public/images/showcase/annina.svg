@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" fill="#09090b">
+    <defs>
+      <linearGradient id="bg4" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#050505"/>
+        <stop offset="100%" stop-color="#111113"/>
+      </linearGradient>
+    </defs>
+    <rect width="800" height="500" fill="url(#bg4)"/>
+    <rect x="0" y="0" width="800" height="36" fill="#141418"/>
+    <circle cx="22" cy="18" r="5" fill="#ef4444"/>
+    <circle cx="38" cy="18" r="5" fill="#eab308"/>
+    <circle cx="54" cy="18" r="5" fill="#22c55e"/>
+    <rect x="80" y="8" width="380" height="20" rx="4" fill="#222228"/>
+    <text x="96" y="22" fill="#a1a1aa" font-family="monospace" font-size="11">https://anninawooding.com</text>
+    
+    <line x1="0" y1="36" x2="800" y2="36" stroke="#27272a" stroke-width="1"/>
+    
+    <text x="40" y="85" fill="#39FF14" font-family="monospace" font-size="11" font-weight="bold" letter-spacing="2">// 04 CONTEMPORARY ARTIST PORTFOLIO</text>
+    <text x="40" y="130" fill="#ffffff" font-family="sans-serif" font-size="32" font-weight="300" letter-spacing="6">ANNINA WOODING</text>
+    <text x="40" y="160" fill="#71717a" font-family="sans-serif" font-size="13">Exhibition Catalog • High-Res Retrospective • Minimalist UI</text>
+
+    <!-- Art Exhibition Gallery Mockup -->
+    <g transform="translate(40, 195)">
+      <!-- Artwork 1 -->
+      <rect x="0" y="0" width="220" height="240" fill="#0c0c0e" stroke="#27272a" stroke-width="1"/>
+      <circle cx="110" cy="100" r="60" fill="none" stroke="#ffffff" stroke-width="1"/>
+      <circle cx="110" cy="100" r="40" fill="#39FF14" fill-opacity="0.1" stroke="#39FF14" stroke-width="0.8"/>
+      <line x1="50" y1="100" x2="170" y2="100" stroke="#a1a1aa" stroke-width="0.5"/>
+      <text x="16" y="200" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold">No. 17 (Resonance)</text>
+      <text x="16" y="220" fill="#71717a" font-family="sans-serif" font-size="11">Oil on Belgian Linen, 2025</text>
+
+      <!-- Artwork 2 -->
+      <rect x="250" y="0" width="220" height="240" fill="#0c0c0e" stroke="#27272a" stroke-width="1"/>
+      <rect x="285" y="45" width="150" height="110" fill="none" stroke="#ffffff" stroke-width="0.8"/>
+      <rect x="305" y="65" width="110" height="70" fill="#ffffff" fill-opacity="0.05" stroke="#39FF14" stroke-width="0.8"/>
+      <text x="266" y="200" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold">Form &amp; Interval VI</text>
+      <text x="266" y="220" fill="#71717a" font-family="sans-serif" font-size="11">Mixed Media on Canvas</text>
+
+      <!-- Exhibition Details -->
+      <rect x="500" y="0" width="220" height="240" fill="#111114" stroke="#27272a" stroke-width="1"/>
+      <text x="520" y="40" fill="#39FF14" font-family="monospace" font-size="10">CURRENT EXHIBITION</text>
+      <text x="520" y="75" fill="#ffffff" font-family="sans-serif" font-size="18" font-weight="bold">LONDON GALLERY</text>
+      <text x="520" y="100" fill="#a1a1aa" font-family="sans-serif" font-size="12">Solo Retrospective</text>
+      <line x1="520" y1="120" x2="680" y2="120" stroke="#27272a" stroke-width="1"/>
+      <text x="520" y="150" fill="#71717a" font-family="sans-serif" font-size="11">High-Res Zoom Engine</text>
+      <text x="520" y="175" fill="#71717a" font-family="sans-serif" font-size="11">Private Collector Vault</text>
+      <text x="520" y="200" fill="#39FF14" font-family="monospace" font-size="10">CATALOG AVAILABLE ↗</text>
+    </g>
+  </svg>

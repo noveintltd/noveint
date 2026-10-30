@@ -5,6 +5,7 @@ import NoveToolsFeature from '../components/NoveToolsFeature';
 import TaiwanBridge from '../components/TaiwanBridge';
 import VariableProximity from '../components/VariableProximity';
 import ProjectStartSection from '../components/ProjectStartSection';
+import RecentWorkCarousel from '../components/RecentWorkCarousel';
 import { Language } from '../App';
 
 interface HomeProps {
@@ -58,6 +59,8 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
           <TaiwanBridge lang={lang} />
         </div>
       </section>
+
+      <RecentWorkCarousel lang={lang} />
 
       <ProjectStartSection lang={lang} />
 
