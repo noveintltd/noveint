@@ -92,14 +92,10 @@ const CreativeAssets: React.FC<ServicePageProps> = ({ lang }) => {
             </div>
             
             <div className="relative group flex items-center justify-center">
-              <video 
-                src="https://noveint.com/nove_glitch%201.mp4" 
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                referrerPolicy="no-referrer"
-                className="w-full h-auto transition-all duration-700 relative z-10"
+              <img 
+                src="/assets/images/noveint_logo.webp" 
+                alt={lang === 'EN' ? 'Creative Ad Assets Emblem' : '廣告創意資產標誌'}
+                className="w-full max-w-[400px] h-auto object-contain transition-all duration-700 relative z-10 select-none pointer-events-none"
               />
             </div>
           </div>

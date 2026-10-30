@@ -106,14 +106,6 @@ const About: React.FC<AboutProps> = ({ lang }) => {
                 transition={{ type: 'spring', stiffness: 400, damping: 10 }}
                 className="inline-block border border-[#39FF14] p-8 relative group cursor-default"
               >
-                <motion.div 
-                  whileHover={{ x: -2, y: -2 }}
-                  className="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-[#39FF14]" 
-                />
-                <motion.div 
-                  whileHover={{ x: 2, y: 2 }}
-                  className="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-[#39FF14]" 
-                />
                 <h2 ref={missionTitleRef} className="text-[#39FF14] text-sm font-black tracking-[0.3em] uppercase mb-4">
                   <VariableProximity
                     label={lang === 'EN' ? 'Our Mission' : '我們的使命'}
@@ -155,14 +147,10 @@ const About: React.FC<AboutProps> = ({ lang }) => {
               <div className="absolute -bottom-4 -left-4 w-8 h-8 border-b border-l border-[#39FF14]/40 transition-all duration-1000 group-hover:scale-125 group-hover:-translate-x-4 group-hover:translate-y-4" />
               <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b border-r border-[#39FF14]/40 transition-all duration-1000 group-hover:scale-125 group-hover:translate-x-4 group-hover:translate-y-4" />
 
-              <video 
-                src="https://noveint.com/nove_color_loop_upscaled.mp4" 
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                referrerPolicy="no-referrer"
-                className="w-full max-w-[400px] h-auto transition-all duration-1000 group-hover:scale-110 relative z-10"
+              <img 
+                src="/assets/images/noveint_logo.webp" 
+                alt={lang === 'EN' ? 'Nove International Symbol' : '英商了解文化標誌'}
+                className="w-full max-w-[400px] h-auto object-contain transition-all duration-1000 group-hover:scale-110 relative z-10 select-none pointer-events-none"
               />
             </div>
           </motion.div>

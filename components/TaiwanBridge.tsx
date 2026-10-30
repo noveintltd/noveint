@@ -140,15 +140,11 @@ const TaiwanBridge: React.FC<TaiwanBridgeProps> = ({ lang }) => {
             transform: `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`,
           }}
         >
-          {/* Main Symbol Video */}
-          <video 
-            src="https://noveint.com/nove_glitch%205_upscaled.mp4" 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            referrerPolicy="no-referrer"
-            className="w-48 h-48 md:w-72 md:h-72 lg:w-96 lg:h-96 object-contain relative z-10 transition-all duration-700 group-hover:scale-110 [mask-image:radial-gradient(circle_at_center,black_60%,transparent_100%)] [-webkit-mask-image:radial-gradient(circle_at_center,black_60%,transparent_100%)]"
+          {/* Main Symbol Image */}
+          <img 
+            src="/assets/images/noveint_logo.webp" 
+            alt={lang === 'EN' ? 'Nove International Symbol' : '英商了解文化標誌'} 
+            className="w-48 h-48 md:w-72 md:h-72 lg:w-96 lg:h-96 object-contain relative z-10 transition-all duration-700 group-hover:scale-110 select-none pointer-events-none"
           />
 
           <div className="absolute top-0 left-0 w-6 h-6 md:w-8 md:h-8 border-t-2 border-l-2 border-[#39FF14] transition-all duration-500 group-hover:scale-110" />

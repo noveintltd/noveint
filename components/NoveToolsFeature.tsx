@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'motion/react';
 import { Language } from '../App';
 import VariableProximity from './VariableProximity';
+import ScrambledText from './ScrambledText';
 
 export interface NoveToolLink {
   id: string;
@@ -371,17 +372,25 @@ const NoveToolsFeature: React.FC<NoveToolsFeatureProps> = ({ lang }) => {
             </h2>
           </motion.div>
           
-          <motion.p 
+          <motion.div 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-6 text-gray-400 max-w-2xl text-sm md:text-base leading-relaxed font-mono uppercase tracking-tight"
+            className="mt-6 max-w-3xl"
           >
-            {lang === 'EN' 
-              ? 'High-performance, privacy-first digital utilities designed to streamline creative & engineering workflows.'
-              : '高效能、隱私優先的數位工具套裝，專為簡化創作者與工程團隊的工作流程而打造。'}
-          </motion.p>
+            <ScrambledText 
+              className="text-gray-400 text-base md:text-lg font-light tracking-wide leading-relaxed transition-all duration-500 hover:text-gray-200"
+              radius={120}
+              duration={0.8}
+              speed={0.4}
+              scrambleChars=".:/\"
+            >
+              {lang === 'EN' 
+                ? 'High-performance, privacy-first digital utilities designed to streamline creative & engineering workflows.'
+                : '高效能、隱私優先的數位工具套裝，專為簡化創作者與工程團隊的工作流程而打造。'}
+            </ScrambledText>
+          </motion.div>
         </div>
       </motion.div>
 
