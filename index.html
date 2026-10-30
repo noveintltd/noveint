@@ -47,16 +47,41 @@
             overflow-x: hidden;
         }
 
-        nav.is-scrolled {
-            background-color: rgba(0, 0, 0, 0.95) !important;
-            backdrop-filter: blur(10px) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+        nav {
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease, padding 0.3s ease;
         }
 
-        /* 3D Perspective Grid Floor */
-        .perspective-grid {
+        nav,
+        nav.is-scrolled,
+        header {
+            border: 0 !important;
+            border-bottom: 0 !important;
+            border-bottom-width: 0 !important;
+            border-color: transparent !important;
+            box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            outline: none !important;
+        }
+
+        nav::after,
+        nav::before,
+        nav.is-scrolled::after,
+        nav.is-scrolled::before {
+            display: none !important;
+            content: none !important;
+            border: 0 !important;
+        }
+
+        nav.is-scrolled {
+            background-color: rgba(0, 0, 0, 0.92) !important;
+            backdrop-filter: blur(12px) !important;
+            border-bottom: 0 !important;
+            border-bottom-width: 0 !important;
+        }
+
+        .novetools-perspective-grid {
             position: absolute;
-            bottom: -35%;
+            bottom: -20%;
             left: -50%;
             width: 200%;
             height: 100%;
@@ -65,10 +90,10 @@
                 linear-gradient(90deg, rgba(57, 255, 20, 0.12) 1px, transparent 1px);
             background-size: 60px 60px;
             transform: perspective(700px) rotateX(65deg);
-            mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 80%);
-            -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 80%);
-            z-index: 0;
+            mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0) 80%);
+            -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0) 80%);
             pointer-events: none;
+            z-index: 0;
         }
 
         @keyframes fastSlideUp {

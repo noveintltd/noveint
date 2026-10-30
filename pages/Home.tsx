@@ -54,7 +54,6 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
 
       <section id="bridge" className="py-32 px-6 md:px-12 relative overflow-hidden">
         <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none" />
-        <div className="perspective-grid" />
         <div className="max-w-7xl mx-auto relative z-10">
           <TaiwanBridge lang={lang} />
         </div>

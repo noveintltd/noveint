@@ -40,8 +40,14 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
   return (
     <div 
       ref={containerRef}
-      className="relative min-h-screen flex flex-col justify-center items-center text-center px-6 pt-32 pb-48 overflow-hidden bg-black"
+      className="relative min-h-screen flex flex-col justify-center items-center text-center px-6 pt-32 pb-48 overflow-hidden bg-black select-none"
     >
+      {/* 1. Ambient Radial Cyber Glow (Behind the Grid) */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#39FF14]/[0.035] blur-[140px] pointer-events-none z-0" />
+
+      {/* 2. 3D Perspective Grid Floor Element */}
+      <div className="novetools-perspective-grid" />
+
       {/* Content Container */}
       <div className="relative z-10 flex flex-col items-center animate-hero-entry group w-full max-w-7xl">
         {/* Title Section with Parallax */}
@@ -120,7 +126,7 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
       {/* Scroll indicator with smooth fade out */}
       <motion.div 
         style={{ opacity: scrollIndicatorOpacity }}
-        className="absolute bottom-10 animate-bounce transition-opacity pointer-events-none"
+        className="absolute bottom-10 animate-bounce transition-opacity pointer-events-none z-10"
       >
         <svg className="w-8 h-8 text-[#39FF14]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 14l-7 7m0 0l-7-7m7 7V3" />

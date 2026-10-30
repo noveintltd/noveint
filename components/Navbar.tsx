@@ -60,11 +60,12 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, lang, toggleLang }) => {
   return (
     <>
       <nav 
-        className={`fixed top-0 w-full z-[140] ${
-          scrolled || isOpen ? "is-scrolled" : "bg-transparent py-6 md:py-8"
+        className={`fixed top-0 w-full z-[140] border-0 border-transparent outline-none shadow-none transition-all duration-300 ${
+          scrolled || isOpen ? "is-scrolled py-3 md:py-4" : "bg-transparent py-6 md:py-8"
         }`}
+        style={{ borderBottom: 'none', borderBottomWidth: 0, boxShadow: 'none' }}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center h-10 md:h-12">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center h-10 md:h-12 border-0 border-transparent shadow-none">
           {/* Logo */}
           <Link 
             to="/"
