@@ -29,8 +29,9 @@
     <meta property="twitter:image" content="https://www.noveint.com/nove_og_image.png">
 
     <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="/nove_trans_300.webp">
     <link rel="icon" type="image/png" sizes="180x180" href="https://www.noveint.com/nove_int_favicon-180.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://www.noveint.com/nove_int_favicon-180.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/nove_trans_300.webp">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,12 +48,7 @@
             overflow-x: hidden;
         }
 
-        nav {
-            transition: background-color 0.3s ease, backdrop-filter 0.3s ease, padding 0.3s ease;
-        }
-
         nav,
-        nav.is-scrolled,
         header {
             border: 0 !important;
             border-bottom: 0 !important;
@@ -64,19 +60,10 @@
         }
 
         nav::after,
-        nav::before,
-        nav.is-scrolled::after,
-        nav.is-scrolled::before {
+        nav::before {
             display: none !important;
             content: none !important;
             border: 0 !important;
-        }
-
-        nav.is-scrolled {
-            background-color: rgba(0, 0, 0, 0.92) !important;
-            backdrop-filter: blur(12px) !important;
-            border-bottom: 0 !important;
-            border-bottom-width: 0 !important;
         }
 
         .novetools-perspective-grid {
