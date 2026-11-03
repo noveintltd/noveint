@@ -104,7 +104,7 @@ const Services: React.FC<ServicesProps> = ({ lang }) => {
         </motion.h1>
         
         <div className="mb-24">
-          <Capabilities lang={lang} variant="grid" />
+          <Capabilities lang={lang} />
         </div>
       </div>
       
