@@ -1,30 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Language } from '../App';
 
 interface NavbarProps {
-  scrolled?: boolean;
+  scrolled: boolean;
   lang: Language;
   toggleLang: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ lang, toggleLang }) => {
+const Navbar: React.FC<NavbarProps> = ({ scrolled, lang, toggleLang }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-  const [isScrollingUp, setIsScrollingUp] = useState(true);
-  const lastScrollYRef = useRef(0);
   const location = useLocation();
+  const navigate = useNavigate();
 
-  // Reset scroll and mobile menu state on route changes
-  useEffect(() => {
-    setScrollY(0);
-    setIsScrollingUp(true);
-    lastScrollYRef.current = 0;
-    setIsOpen(false);
-  }, [location.pathname]);
-
-  // Prevent background scrolling when mobile menu is open
+  // Prevent scrolling when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -32,49 +22,6 @@ const Navbar: React.FC<NavbarProps> = ({ lang, toggleLang }) => {
       document.body.style.overflow = 'unset';
     }
   }, [isOpen]);
-
-  // Smart Dynamic Header Scroll Listener
-  useEffect(() => {
-    // Read initial scroll position
-    const initialY = typeof window !== 'undefined' ? (window.pageYOffset || document.documentElement.scrollTop) : 0;
-    setScrollY(initialY);
-    lastScrollYRef.current = initialY;
-
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentY = window.pageYOffset || document.documentElement.scrollTop;
-          setScrollY(currentY);
-
-          // 2. Near top of page: scrollY < 50px -> header always stays naturally visible with transparent background
-          if (currentY < 50) {
-            setIsScrollingUp(true);
-          } else {
-            const deltaY = currentY - lastScrollYRef.current;
-            // 5px threshold prevents micro-shakes / trackpad vibration
-            if (Math.abs(deltaY) > 5) {
-              if (deltaY > 0) {
-                // Scrolling down -> hide header off-screen
-                setIsScrollingUp(false);
-              } else {
-                // Scrolling up -> reveal header smoothly
-                setIsScrollingUp(true);
-              }
-            }
-          }
-
-          lastScrollYRef.current = Math.max(0, currentY);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const handleScrollTo = (e: React.MouseEvent, id: string) => {
     if (location.pathname === '/') {
@@ -93,6 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, toggleLang }) => {
         setIsOpen(false);
       }
     } else {
+      // If not on home page, navigate to home first then scroll (or just navigate)
       setIsOpen(false);
     }
   };
@@ -109,25 +57,11 @@ const Navbar: React.FC<NavbarProps> = ({ lang, toggleLang }) => {
     { path: '/services', label: lang === 'EN' ? 'Services' : '服務項目' },
   ];
 
-  // Visibility states:
-  // - Top of page (scrollY < 50): always naturally visible with transparent background
-  // - Scrolling down: off-screen (-translate-y-full opacity-0 pointer-events-none)
-  // - Scrolling up: in view (translate-y-0 opacity-100 pointer-events-auto) with subtle dark backdrop blur (bg-black/80 backdrop-blur-md)
-  // - Mobile menu open: kept in view
-  const isAtTop = scrollY < 50;
-  const isHidden = !isAtTop && !isScrollingUp && !isOpen;
-
   return (
     <>
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out border-0 border-transparent shadow-none outline-none ${
-          isHidden 
-            ? '-translate-y-full opacity-0 pointer-events-none' 
-            : 'translate-y-0 opacity-100 pointer-events-auto'
-        } ${
-          isAtTop && !isOpen
-            ? 'bg-transparent py-6 md:py-8' 
-            : 'bg-black/80 backdrop-blur-md py-3 md:py-4'
+        className={`fixed top-0 w-full z-[140] border-0 border-transparent outline-none shadow-none transition-all duration-300 ${
+          scrolled || isOpen ? "is-scrolled py-3 md:py-4" : "bg-transparent py-6 md:py-8"
         }`}
         style={{ borderBottom: 'none', borderBottomWidth: 0, boxShadow: 'none' }}
       >
@@ -135,7 +69,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, toggleLang }) => {
           {/* Logo */}
           <Link 
             to="/"
-            className="text-2xl font-black tracking-tighter flex items-center gap-2 shrink-0 cursor-pointer relative z-[60] group"
+            className="text-2xl font-black tracking-tighter flex items-center gap-2 shrink-0 cursor-pointer relative z-[150] group"
             onClick={() => setIsOpen(false)}
           >
             <span>
@@ -175,7 +109,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, toggleLang }) => {
             <button 
               onClick={toggleLang}
               aria-label={lang === 'EN' ? 'Switch language to Traditional Chinese' : 'Switch language to English'}
-              className="ml-4 relative py-1.5 px-4 border border-[#39FF14] text-xs text-[#39FF14] hover:bg-[#39FF14] hover:text-black transition-all duration-200 font-black tracking-[0.1em] whitespace-nowrap cursor-pointer"
+              className="ml-4 relative py-1.5 px-4 border border-[#39FF14] text-xs text-[#39FF14] hover:bg-[#39FF14] hover:text-black transition-all duration-200 font-black tracking-[0.1em] whitespace-nowrap"
             >
               <motion.span whileHover="hover" initial="initial" className="relative">
                 {lang === 'EN' ? '繁體中文' : 'English'}
@@ -193,7 +127,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, toggleLang }) => {
           </div>
 
           {/* Mobile UI Buttons */}
-          <div className="md:hidden flex items-center gap-4 relative z-[60]">
+          <div className="md:hidden flex items-center gap-4 relative z-[150]">
             <button 
               onClick={handleToggleLang}
               aria-label={lang === 'EN' ? 'Switch language to Traditional Chinese' : 'Switch language to English'}
@@ -205,7 +139,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, toggleLang }) => {
             </button>
             
             <button 
-              className="w-10 h-10 flex flex-col justify-center items-center focus:outline-none cursor-pointer"
+              className="w-10 h-10 flex flex-col justify-center items-center focus:outline-none"
               onClick={() => setIsOpen(!isOpen)}
               aria-label={lang === 'EN' ? (isOpen ? 'Close navigation menu' : 'Open navigation menu') : (isOpen ? '關閉導航選單' : '開啟導航選單')}
             >
@@ -219,8 +153,8 @@ const Navbar: React.FC<NavbarProps> = ({ lang, toggleLang }) => {
 
       {/* Mobile Menu Overlay */}
       <div 
-        className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-xl transition-all duration-500 ease-in-out md:hidden ${
-          isOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'
+        className={`fixed inset-0 z-[130] bg-black transition-transform duration-500 ease-in-out md:hidden ${
+          isOpen ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
         <div className="flex flex-col items-center justify-center h-full px-10 gap-10">
@@ -243,7 +177,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, toggleLang }) => {
 
           <button 
             onClick={handleToggleLang}
-            className="neon-button w-full max-w-xs py-5 text-sm font-black tracking-widest uppercase cursor-pointer"
+            className="neon-button w-full max-w-xs py-5 text-sm font-black tracking-widest uppercase"
           >
             {lang === 'EN' ? '繁體中文' : 'English'}
           </button>
