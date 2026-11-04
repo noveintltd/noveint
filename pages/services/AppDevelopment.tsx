@@ -61,7 +61,7 @@ const AppDevelopment: React.FC<ServicePageProps> = ({ lang }) => {
           transition={{ duration: 0.8 }}
         >
           <Link 
-            to="/#services" 
+            to="/services" 
             className="inline-flex items-center gap-2 text-[#39FF14] text-xs font-bold tracking-widest uppercase mb-12 hover:gap-4 transition-all"
           >
             <svg className="w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">

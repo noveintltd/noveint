@@ -48,10 +48,10 @@ const AIVoice: React.FC<ServicePageProps> = ({ lang }) => {
           transition={{ duration: 0.8 }}
         >
           <Link 
-            to="/#services" 
+            to="/services" 
             className="inline-flex items-center gap-2 text-[#39FF14] text-xs font-bold tracking-widest uppercase mb-12 hover:gap-4 transition-all"
           >
-            <svg className="w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
             {lang === 'EN' ? 'Back to Services' : '返回服務項目'}
