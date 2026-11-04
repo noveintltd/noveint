@@ -257,7 +257,7 @@ const RecentWorkCarousel: React.FC<RecentWorkCarouselProps> = ({ lang }) => {
     <section
       id="showcase"
       ref={sectionContainerRef}
-      className="py-24 bg-black relative overflow-hidden"
+      className="pt-20 pb-20 md:pb-24 bg-black relative overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={() => setIsPaused(true)}

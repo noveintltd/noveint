@@ -47,8 +47,8 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
         <div className="pt-8 border-t border-white/5">
           <p className="text-[9px] text-gray-600 leading-relaxed text-center md:text-left max-w-4xl">
             {lang === 'EN' 
-              ? '© 2026 Nove International Limited. noveint.com is a trading name of Nove International Limited, a company registered in England and Wales. Company Number: 16222266 | Registered Office: 274 Northdown Road, Margate, Kent, CT9 2PT'
-              : '© 2026 Nove International Limited。noveint.com 為 Nove International Limited 之交易名稱。本公司於英格蘭及威爾斯註冊。公司編號：16222266 | 註冊地址：274 Northdown Road, Margate, Kent, CT9 2PT'}
+              ? '© 2026 Nove International Limited. noveint.com is a trading name of Nove International Limited, a company registered in England and Wales. Company Number: 16222266 | Registered Office: 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ'
+              : '© 2026 Nove International Limited。noveint.com 為 Nove International Limited 之交易名稱。本公司於英格蘭及威爾斯註冊。公司編號：16222266 | 註冊地址：71-75 Shelton Street, Covent Garden, London, WC2H 9JQ'}
           </p>
         </div>
       </div>
