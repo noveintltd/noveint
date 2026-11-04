@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
-import Services from './pages/Services';
 import WebDesign from './pages/services/WebDesign';
 import CreativeAssets from './pages/services/CreativeAssets';
 import LanguageServices from './pages/services/LanguageServices';
@@ -18,12 +17,37 @@ import SEOHead from './components/SEOHead';
 
 export type Language = 'EN' | 'ZH';
 
-// Scroll to top on route change
+// Scroll to top on route change or scroll to hash target if present
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '');
+      const scrollTarget = () => {
+        const element = document.getElementById(id);
+        if (element) {
+          const offset = id === 'services' ? 0 : 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = Math.max(0, elementPosition + window.pageYOffset - offset);
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+          return true;
+        }
+        return false;
+      };
+
+      scrollTarget();
+      const timer1 = setTimeout(scrollTarget, 120);
+      const timer2 = setTimeout(scrollTarget, 350);
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
+    }
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash]);
   return null;
 };
 
@@ -96,7 +120,7 @@ const AppContent: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home lang={lang} />} />
         <Route path="/about" element={<About lang={lang} />} />
-        <Route path="/services" element={<Services lang={lang} />} />
+        <Route path="/services" element={<Navigate to="/#services" replace />} />
         <Route path="/services/web-design" element={<WebDesign lang={lang} />} />
         <Route path="/services/creative-assets" element={<CreativeAssets lang={lang} />} />
         <Route path="/services/language-services" element={<LanguageServices lang={lang} />} />
