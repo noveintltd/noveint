@@ -186,9 +186,10 @@ interface ToolCardProps {
   tool: NoveToolLink;
   index: number;
   lang: Language;
+  isMobile?: boolean;
 }
 
-const ToolCard: React.FC<ToolCardProps> = ({ tool, index, lang }) => {
+const ToolCard: React.FC<ToolCardProps> = ({ tool, index, lang, isMobile }) => {
   const cardRef = useRef<HTMLAnchorElement>(null);
   const title = lang === 'EN' ? tool.name : tool.nameZh;
   const description = lang === 'EN' ? tool.description : tool.descriptionZh;
@@ -202,7 +203,7 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool, index, lang }) => {
       href={tool.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex-shrink-0 w-[320px] md:w-[340px] p-8 rounded-none border border-white/10 bg-black/60 backdrop-blur-md group hover:border-[#39FF14]/40 transition-all duration-300 relative overflow-hidden flex flex-col justify-between"
+      className={`flex-shrink-0 ${isMobile ? 'w-full max-w-[320px] mx-auto' : 'w-[320px] md:w-[340px]'} p-8 rounded-none border border-white/10 bg-black/60 backdrop-blur-md group hover:border-[#39FF14]/40 transition-all duration-300 relative overflow-hidden flex flex-col justify-between`}
     >
       {/* Cyber Glow on hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#39FF14]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -272,20 +273,26 @@ const NoveToolsFeature: React.FC<NoveToolsFeatureProps> = ({ lang }) => {
   const [index, setIndex] = useState(NOVE_TOOLS_LIST.length);
   const [isPaused, setIsPaused] = useState(false);
   const [centeringOffset, setCenteringOffset] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const cardWidth = 340;
+  const mobileCardWidth = 320;
   const gap = 32;
   const step = cardWidth + gap;
+  const mobileStep = mobileCardWidth + gap;
 
   // Calculate offset to center the active card in viewport
   useEffect(() => {
     const updateOffset = () => {
-      setCenteringOffset((window.innerWidth - cardWidth) / 2);
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      const width = mobile ? mobileCardWidth : cardWidth;
+      setCenteringOffset((window.innerWidth - width) / 2);
     };
     updateOffset();
     window.addEventListener('resize', updateOffset);
     return () => window.removeEventListener('resize', updateOffset);
-  }, [cardWidth]);
+  }, [cardWidth, mobileCardWidth]);
 
   // Auto-scroll ticker
   useEffect(() => {
@@ -298,19 +305,22 @@ const NoveToolsFeature: React.FC<NoveToolsFeatureProps> = ({ lang }) => {
 
   // Wrap around logic for smooth infinite reel
   useEffect(() => {
-    if (index >= NOVE_TOOLS_LIST.length * 2) {
+    const currentStep = isMobile ? mobileStep : step;
+    const maxIndex = NOVE_TOOLS_LIST.length * 2;
+    const minIndex = NOVE_TOOLS_LIST.length;
+    if (index >= maxIndex) {
       const timer = setTimeout(() => {
-        setIndex(NOVE_TOOLS_LIST.length);
+        setIndex(minIndex);
       }, 500);
       return () => clearTimeout(timer);
     }
-    if (index < NOVE_TOOLS_LIST.length) {
+    if (index < minIndex) {
       const timer = setTimeout(() => {
-        setIndex(NOVE_TOOLS_LIST.length * 2 - 1);
+        setIndex(maxIndex - 1);
       }, 500);
       return () => clearTimeout(timer);
     }
-  }, [index]);
+  }, [index, isMobile, mobileStep, step]);
 
   const handlePrev = () => {
     setIsPaused(true);
@@ -395,34 +405,35 @@ const NoveToolsFeature: React.FC<NoveToolsFeatureProps> = ({ lang }) => {
       </motion.div>
 
       {/* Infinite Carousel Reel */}
-      <motion.div 
-        style={{ y: carouselY }}
-        className="relative w-full overflow-hidden py-10 will-change-transform"
-      >
-        <div className="absolute inset-y-0 left-0 w-32 md:w-48 bg-gradient-to-r from-black via-black/80 to-transparent z-20 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-32 md:w-48 bg-gradient-to-l from-black via-black/80 to-transparent z-20 pointer-events-none" />
-        
-        <motion.div 
-          className="flex gap-8"
-          animate={{ x: centeringOffset - index * step }}
-          transition={{ 
-            type: "spring",
-            stiffness: 100,
-            damping: 20,
-            mass: 1
-          }}
-          style={{ width: 'fit-content' }}
-        >
-          {scrollItems.map((tool, idx) => (
-            <ToolCard 
-              key={`${tool.id}-${idx}`} 
-              tool={tool} 
-              index={idx % NOVE_TOOLS_LIST.length} 
-              lang={lang} 
-            />
-          ))}
-        </motion.div>
-      </motion.div>
+            <motion.div 
+              style={{ y: carouselY }}
+              className="relative w-full overflow-hidden py-10 will-change-transform"
+            >
+              <div className="absolute inset-y-0 left-0 w-32 md:w-48 bg-gradient-to-r from-black via-black/80 to-transparent z-20 pointer-events-none" />
+              <div className="absolute inset-y-0 right-0 w-32 md:w-48 bg-gradient-to-l from-black via-black/80 to-transparent z-20 pointer-events-none" />
+       
+              <motion.div 
+                className="flex gap-8"
+                animate={{ x: centeringOffset - index * (isMobile ? mobileStep : step) }}
+                transition={{ 
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 20,
+                  mass: 1
+                }}
+                style={{ width: 'fit-content' }}
+              >
+                {scrollItems.map((tool, idx) => (
+                  <ToolCard 
+                    key={`${tool.id}-${idx}`} 
+                    tool={tool} 
+                    index={idx % NOVE_TOOLS_LIST.length} 
+                    lang={lang}
+                    isMobile={isMobile}
+                  />
+                ))}
+              </motion.div>
+            </motion.div>
 
       {/* Navigation Controls and Master Suite Link */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-10">
